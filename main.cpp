@@ -378,6 +378,27 @@ int main()
             }
         }
     }
+    else if (choice == 7)
+    {
+        int id = 0;
+        cout << "enter the id of the school\n";
+        cin >> id;
+        for (int i = 0; i < schoolsQuantity; ++i)
+        {
+            if (schools[i].getIdNumber() == id)
+            {
+                for (int j = 0; j < 10; ++j)
+                {
+                    cout << schools[i].classes[j].teacher.getFirstName() << " " << schools[i].classes[j].teacher.getLastName() << endl;
+                    cout << schools[i].classes[j].teacher.getNationalId() << endl;
+                }
+            }
+        }
+    }
+    else if (choice == 8)
+    {
+
+    }
 }
 
 int length(int id)
