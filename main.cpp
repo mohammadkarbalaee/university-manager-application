@@ -264,8 +264,8 @@ int main()
            "1:setting the information for schools\n"
            "2:viewing the information entered\n"
            "3:show school's information by code\n"
-           "4:search teacher\n"
            "5:delete an school\n"
+           "4:search teacher\n"
            "6:search students\n"
            "7:showing teachers information working at a school\n"
            "8:show name and national id of students\n"
@@ -354,6 +354,26 @@ int main()
                 if (schools[i].classes[j].teacher.getNationalId() == id)
                 {
                     cout << schools[i].getName() << endl;
+                }
+            }
+        }
+    }
+    else if (choice == 6)
+    {
+        int id = 0;
+        cout << "enter the national id of the student\n";
+        cin >> id;
+        for (int i = 0; i < schoolsQuantity; ++i)
+        {
+            for (int j = 0; j < 10; ++j)
+            {
+                for (int k = 0; k < 30; ++k)
+                {
+                    if (schools[i].classes[j].students[k].getNationalId() == id)
+                    {
+                        cout << schools[i].getName() << endl;
+                        cout << schools[i].classes[j].teacher.getFirstName() << " " << schools[i].classes[j].teacher.getLastName() << endl;
+                    }
                 }
             }
         }
