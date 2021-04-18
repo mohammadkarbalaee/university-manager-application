@@ -342,6 +342,22 @@ int main()
             schools[i] = schools[i+1];
         }
     }
+    else if (choice == 5)
+    {
+        int id = 0;
+        cout << "enter the national id of the teacher\n";
+        cin >> id;
+        for (int i = 0; i < schoolsQuantity; ++i)
+        {
+            for (int j = 0; j < 10; ++j)
+            {
+                if (schools[i].classes[j].teacher.getNationalId() == id)
+                {
+                    cout << schools[i].getName() << endl;
+                }
+            }
+        }
+    }
 }
 
 int length(int id)
