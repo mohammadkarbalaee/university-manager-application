@@ -397,7 +397,18 @@ int main()
     }
     else if (choice == 8)
     {
+        for (int i = 0; i < schoolsQuantity; ++i)
+        {
 
+            for (int j = 0; j < 10; ++j)
+            {
+                for (int k = 0; k < 30; ++k)
+                {
+                    cout << schools[i].classes[j].students[k].getFirstName() << " " << schools[i].classes[j].students[k].getLastName() << endl;
+                    cout << schools[i].classes[j].students[k].getNationalId() << endl;
+                }
+            }
+        }
     }
 }
 
