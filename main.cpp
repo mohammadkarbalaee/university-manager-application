@@ -323,6 +323,25 @@ int main()
             }
         }
     }
+    else if (choice == 4)
+    {
+        int id = 0;
+        cout << "enter the id of an school which you want to delete\n";
+        cin >> id;
+        int target = 0;
+        for (int i = 0; i < schoolsQuantity; ++i)
+        {
+            if (id == schools[i].getIdNumber())
+            {
+                target = i;
+                break;
+            }
+        }
+        for (int i = target; i < schoolsQuantity - 1; ++i)
+        {
+            schools[i] = schools[i+1];
+        }
+    }
 }
 
 int length(int id)
