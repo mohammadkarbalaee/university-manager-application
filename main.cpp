@@ -257,6 +257,7 @@ int main()
     cout << "enter the number of schools which you want to input" << endl;
     cin >> schoolsQuantity;
     School schools[schoolsQuantity];
+    int schoolds[schoolsQuantity];
     string temp;
     int choice = 0;
     printf("what do you want to do?\n"
@@ -283,7 +284,6 @@ int main()
     }
     else if (choice == 2)
     {
-        int schoolds[schoolsQuantity];
         for (int i = 0; i < schoolsQuantity; ++i)
         {
             schoolds[i] = schools[i].getIdNumber();
@@ -307,6 +307,19 @@ int main()
                 {
                     showAllData(schools[j]);
                 }
+            }
+        }
+    }
+    else if (choice == 3)
+    {
+        int id = 0;
+        cout << "enter the id of your wanted school\n";
+        cin  >> id;
+        for (int j = 0; j < schoolsQuantity; ++j)
+        {
+            if (id == schools[j].getIdNumber())
+            {
+                showAllData(schools[j]);
             }
         }
     }
