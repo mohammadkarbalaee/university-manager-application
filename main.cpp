@@ -205,7 +205,7 @@ public:
     }
 
     SchoolClass classes[10];
-    const string &getName() const
+    string getName()
     {
         return name;
     }
@@ -223,9 +223,40 @@ public:
 
 School setSchoolInformation();
 
+void showClassData(SchoolClass aClass)
+{
+    cout << "name: " << aClass.getName() << endl;
+    cout << "id: " << aClass.getId() << endl;
+    cout << "teacher's name: " << aClass.teacher.getFirstName() << " " << aClass.teacher.getLastName() << endl;
+    cout << "teacher's national ID: " << aClass.teacher.getNationalId() << endl;
+    cout << "teacher's birthday: " << aClass.teacher.getBirthYear() << "/" << aClass.teacher.getBirthMonth() << "/" << aClass.teacher.getBirthDay() << endl;
+    for (int i = 0; i < 30; ++i)
+    {
+        cout << "student " << i + 1 << endl;
+        cout << "teacher's name: " << aClass.students[i].getFirstName() << " " << aClass.students[i].getLastName() << endl;
+        cout << "teacher's national ID: " << aClass.students[i].getNationalId() << endl;
+        cout << "teacher's birthday: " << aClass.students[i].getBirthYear() << "/" << aClass.students[i].getBirthMonth() << "/" << aClass.students[i].getBirthDay() << endl;
+    }
+}
+
+void showAllData(School school)
+{
+    cout << "----------------\n";
+    cout << "school's name: " << school.getName() << endl;
+    cout << "school's id: " << school.getIdNumber() << endl;
+    for (int i = 0; i < 10; ++i)
+    {
+        cout << "class number " << i + 1 << endl;
+        showClassData(school.classes[i]);
+    }
+}
+
 int main()
 {
     int schoolsQuantity = 0;
+    cout << "enter the number of schools which you want to input" << endl;
+    cin >> schoolsQuantity;
+    School schools[schoolsQuantity];
     string temp;
     int choice = 0;
     printf("what do you want to do?\n"
@@ -244,9 +275,6 @@ int main()
     cin >> choice;
     if (choice == 1)
     {
-        cout << "enter the number of schools which you want to input" << endl;
-        cin >> schoolsQuantity;
-        School schools[schoolsQuantity];
         for (int i = 0; i < schoolsQuantity; ++i)
         {
             cout << "school number " << i +1 << endl << endl;
@@ -255,7 +283,32 @@ int main()
     }
     else if (choice == 2)
     {
-
+        int schoolds[schoolsQuantity];
+        for (int i = 0; i < schoolsQuantity; ++i)
+        {
+            schoolds[i] = schools[i].getIdNumber();
+        }
+        int key;
+        int properLocation;
+        for (int i = 1; i < schoolsQuantity; i++)
+        {
+            key = schoolds[i];
+            for (properLocation = i - 1;properLocation >= 0 && key < schoolds[properLocation];properLocation--)
+            {
+                schoolds[properLocation + 1] = schoolds[properLocation];
+            }
+            schoolds[properLocation + 1] = key;
+        }
+        for (int i = 0; i < schoolsQuantity; ++i)
+        {
+            for (int j = 0; j < schoolsQuantity; ++j)
+            {
+                if (schoolds[i] == schools[j].getIdNumber())
+                {
+                    showAllData(schools[j]);
+                }
+            }
+        }
     }
 }
 
