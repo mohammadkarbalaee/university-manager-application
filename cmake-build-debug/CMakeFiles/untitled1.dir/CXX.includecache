@@ -6,11 +6,33 @@
 
 #IncludeRegexTransform: 
 
+/home/mksht80/CLionProjects/untitled1/danesh_amooz.h
+string
+/home/mksht80/CLionProjects/untitled1/string
+
+/home/mksht80/CLionProjects/untitled1/kelas.h
+string
+/home/mksht80/CLionProjects/untitled1/string
+
+/home/mksht80/CLionProjects/untitled1/madreseh.h
+
 /home/mksht80/CLionProjects/untitled1/main.cpp
 iostream
 -
-vector
--
+stdio.h
+/home/mksht80/CLionProjects/untitled1/stdio.h
+string
+/home/mksht80/CLionProjects/untitled1/string
+moalem.h
+/home/mksht80/CLionProjects/untitled1/moalem.h
+danesh_amooz.h
+/home/mksht80/CLionProjects/untitled1/danesh_amooz.h
+kelas.h
+/home/mksht80/CLionProjects/untitled1/kelas.h
+madreseh.h
+/home/mksht80/CLionProjects/untitled1/madreseh.h
+
+/home/mksht80/CLionProjects/untitled1/moalem.h
 string
 /home/mksht80/CLionProjects/untitled1/string
 

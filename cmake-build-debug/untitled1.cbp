@@ -82,7 +82,22 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/mksht80/CLionProjects/untitled1/danesh_amooz.h">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="/home/mksht80/CLionProjects/untitled1/kelas.h">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="/home/mksht80/CLionProjects/untitled1/madreseh.h">
+			<Option target="untitled1"/>
+		</Unit>
 		<Unit filename="/home/mksht80/CLionProjects/untitled1/main.cpp">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="/home/mksht80/CLionProjects/untitled1/moalem.h">
+			<Option target="untitled1"/>
+		</Unit>
+		<Unit filename="/home/mksht80/CLionProjects/untitled1/tabe_ha.h">
 			<Option target="untitled1"/>
 		</Unit>
 		<Unit filename="/home/mksht80/CLionProjects/untitled1/CMakeLists.txt">

@@ -1,867 +1,635 @@
 #include <iostream>
+#include "stdio.h"
 #include "string"
+#include "moalem.h"
+#include "danesh_amooz.h"
+#include "kelas.h"
+#include "madreseh.h"
 using namespace std;
 
-const int CLASSES = 10;
-const int quantitySTUDENTS = 30;
+const int tedad_daneshamooz = 30;
+const int tedad_class = 10;
 
-class Teacher
-{
-private:
-    string firstName;
-    string lastName;
-    int nationalId;
-    int birthDay;
-    int birthMonth;
-    int birthYear;
-public:
-    const string &getFirstName() const
-    {
-        return firstName;
+madreseh gereftan_etelaat_madreseh();
+void neshan_dadan_etelaat_class(kelas kelas);
+void neshan_dadan_hame_etelaat(madreseh inn_madreseh);
+void moratab_sazi(int tedad_madares, int *code_hame_marares);
+void nemayesh_menu_asli();
+void yek(int tedad_madares, madreseh *madares);
+void dovvomi(int tedad_madares,madreseh *madares, int *code_hame_marares);
+void sevvomi(int tedad_madares,madreseh *madares);
+void panjomi(int tedad_madares,madreseh *madares);
+void chaharomi(int tedad_madares, madreseh *madares);
+void shishomi(int tedad_madares,madreseh *madares);
+void haftomi(int tedad_madares, madreseh *madares);
+void nohomi(int tedad_madares,madreseh *madares);
+void thaghir_esm_kelas(int tedad_madares,madreseh *madares, const string &reshteh, int code_kelas);
+void thaghir_code_kelas(int tedad_madares,madreseh *madares, int code_kelas, int code_jadid_kelas);
+void thaghir_esm_daneshamooz(int tedad_madares, madreseh *madares, int code_melli, const string &reshteh);
+void thaghir_famili_daneshamooz(int tedad_madares,madreseh *madares, int code_melli, const string &reshteh);
+void thaghir_tarikh_tavallod_daneshamooz(int tedad_madares,madreseh *madares, int code_melli);
+void thaghir_code_melli_daneshamooz(int tedad_madares,madreseh *madares, int code_melli, int code_melli_jadid);
+void thaghir_daneshamooz(int tedad_madares,madreseh *madares, int code_melli, const string &reshteh,int entekhab_daneshamooz);
+void thaghir_esm_moalem(int tedad_madares,madreseh *madares, int code_melli, const string &reshteh);
+void thaghir_famili_moalem(int tedad_madares,madreseh *madares, int code_melli, const string &reshteh);
+void thaghir_tarikh_tavallod_moalem(int tedad_madares,madreseh *madares, int code_melli);
+void thaghir_code_melli_moalem(int tedad_madares,madreseh *madares, int code_melli, int code_melli_jadid);
+void thaghir_moalem(int tedad_madares,madreseh *madares, int code_melli, const string &reshteh,int entekhab_daneshamooz);
+void thaghir_esm_madreseh(int tedad_madares, madreseh *madares, int code, const string &reshteh);
+void thaghir_code_madreseh(int tedad_madares, madreseh *madares, int code, int code_jadid);
+void thaghir_madreseh(int tedad_madares, madreseh *madares, int code, int entekhan_madreseh, const string &reshteh,int code_jadid);
+void dahomi(int tedad_madares,madreseh *madares);
+void hashtomi(int tedad_madares, madreseh *madares);
+int andaze(int adad);
+bool dorosti_code_melli(int code_melli);
+bool dorosti_esm(string esm, string famili);
+danesh_amooz sabt_etelaat_danesh_amooz();
+moalem sabt_etelaat_moalem();
+kelas sabt_etelaat_kelas();
+
+int main(){
+    int tedad_madares = 0;
+    printf("chand ta madreseh ro mikhai vared koni?n");
+    scanf("%d",&tedad_madares);
+    madreseh madares[tedad_madares];
+    int code_hame_marares[tedad_madares];
+    string movaghat;
+    int entekhab = 0;
+    nemayesh_menu_asli();
+    while (entekhab != 11){
+        scanf("%d",&entekhab);
+        switch (entekhab) {
+            case 1: yek(tedad_madares, madares); break;
+            case 2: dovvomi(tedad_madares, madares, code_hame_marares); break;
+            case 3: sevvomi(tedad_madares, madares); break;
+            case 4: chaharomi(tedad_madares, madares); break;
+            case 5: panjomi(tedad_madares, madares); break;
+            case 6: shishomi(tedad_madares, madares); break;
+            case 7: haftomi(tedad_madares, madares); break;
+            case 8: hashtomi(tedad_madares, madares); break;
+            case 9: nohomi(tedad_madares, madares); break;
+            case 10: dahomi(tedad_madares, madares); break;
+            default:
+                printf("movffagh bashid,khoda negajdar shoma%n");
+                break;
+        }
     }
-
-    void setFirstName(const string &firstName)
-    {
-        Teacher::firstName = firstName;
-    }
-
-    const string &getLastName() const
-    {
-        return lastName;
-    }
-
-    void setLastName(const string &lastName)
-    {
-        Teacher::lastName = lastName;
-    }
-
-    int getNationalId() const
-    {
-        return nationalId;
-    }
-
-    void setNationalId(int nationalId)
-    {
-        Teacher::nationalId = nationalId;
-    }
-
-    int getBirthDay() const
-    {
-        return birthDay;
-    }
-
-    void setBirthDay(int birthDay)
-    {
-        Teacher::birthDay = birthDay;
-    }
-
-    int getBirthMonth() const
-    {
-        return birthMonth;
-    }
-
-    void setBirthMonth(int birthMonth)
-    {
-        Teacher::birthMonth = birthMonth;
-    }
-
-    int getBirthYear() const
-    {
-        return birthYear;
-    }
-
-    void setBirthYear(int birthYear)
-    {
-        Teacher::birthYear = birthYear;
-    }
-};
-
-class Student
-{
-private:
-    string firstName;
-    string lastName;
-    int nationalId;
-    int birthDay;
-    int birthMonth;
-    int birthYear;
-public:
-    const string &getFirstName() const
-    {
-        return firstName;
-    }
-
-    void setFirstName(const string &firstName)
-    {
-        Student::firstName = firstName;
-    }
-
-    const string &getLastName() const
-    {
-        return lastName;
-    }
-
-    void setLastName(const string &lastName)
-    {
-        Student::lastName = lastName;
-    }
-
-    int getNationalId() const
-    {
-        return nationalId;
-    }
-
-    void setNationalId(int nationalId)
-    {
-        Student::nationalId = nationalId;
-    }
-
-    int getBirthDay() const
-    {
-        return birthDay;
-    }
-
-    void setBirthDay(int birthDay)
-    {
-        Student::birthDay = birthDay;
-    }
-
-    int getBirthMonth() const
-    {
-        return birthMonth;
-    }
-
-    void setBirthMonth(int birthMonth)
-    {
-        Student::birthMonth = birthMonth;
-    }
-
-    int getBirthYear() const
-    {
-        return birthYear;
-    }
-
-    void setBirthYear(int birthYear)
-    {
-        Student::birthYear = birthYear;
-    }
-};
-
-class SchoolClass
-{
-private:
-    string name;
-    int id;
-public:
-    Student students[30];
-    Teacher teacher;
-    const Teacher &getTeacher() const
-    {
-        return teacher;
-    }
-
-    void setTeacher(const Teacher &teacher)
-    {
-        SchoolClass::teacher = teacher;
-    }
-
-    const string &getName() const
-    {
-        return name;
-    }
-
-    void setName(const string &name)
-    {
-        SchoolClass::name = name;
-    }
-
-    int getId() const
-    {
-        return id;
-    }
-
-    void setId(int id)
-    {
-        SchoolClass::id = id;
-    }
-
-    const Student *getStudents() const
-    {
-        return students;
-    }
-};
-
-class School
-{
-private:
-    string name;
-    int idNumber;
-public:
-    int getIdNumber() const
-    {
-        return idNumber;
-    }
-
-    void setIdNumber(int idNumber)
-    {
-        School::idNumber = idNumber;
-    }
-
-    SchoolClass classes[10];
-    string getName()
-    {
-        return name;
-    }
-
-    void setName(const string &name)
-    {
-        School::name = name;
-    }
-
-    const SchoolClass *getClasses() const
-    {
-        return classes;
-    }
-};
-
-School setSchoolInformation();
-
-void showClassData(SchoolClass aClass)
-{
-    cout << "name: " << aClass.getName() << endl;
-    cout << "id: " << aClass.getId() << endl;
-    cout << "teacher's name: " << aClass.teacher.getFirstName() << " " << aClass.teacher.getLastName() << endl;
-    cout << "teacher's national ID: " << aClass.teacher.getNationalId() << endl;
-    cout << "teacher's birthday: " << aClass.teacher.getBirthYear() << "/" << aClass.teacher.getBirthMonth() << "/" << aClass.teacher.getBirthDay() << endl;
-    for (int i = 0; i < quantitySTUDENTS; ++i)
-    {
-        cout << "student " << i + 1 << endl;
-        cout << "teacher's name: " << aClass.students[i].getFirstName() << " " << aClass.students[i].getLastName() << endl;
-        cout << "teacher's national ID: " << aClass.students[i].getNationalId() << endl;
-        cout << "teacher's birthday: " << aClass.students[i].getBirthYear() << "/" << aClass.students[i].getBirthMonth() << "/" << aClass.students[i].getBirthDay() << endl;
-    }
+    return 0;
 }
 
-void showAllData(School school)
-{
-    cout << "----------------\n";
-    cout << "school's name: " << school.getName() << endl;
-    cout << "school's id: " << school.getIdNumber() << endl;
-    for (int i = 0; i < CLASSES; ++i)
-    {
-        cout << "class number " << i + 1 << endl;
-        showClassData(school.classes[i]);
+void dahomi(int tedad_madares,madreseh *madares) {
+    int code = 0;
+    int code_melli = 0;
+    int entekhab_kelas = 0;
+    int entekhan_madreseh = 0;
+    string reshteh = 0;
+    int code_jadid = 0;
+    int code_kelas = 0;
+    int code_jadid_kelas = 0;
+    int entekhab_daneshamooz = 0;
+    cout << "code madreseh ii ke mikhain taghirat bedid ra vared konid\n";
+    cin >> code;
+    cout << "ghasd ghir yek kelas ra darid?[1 bale 0 kheir]\n";
+    cin >> entekhab_kelas;
+    if (code == 1){
+        cout << "code kelasi ke mikhahid taghirat dahid vared konid\n";
+        cin >> code_kelas;
+        printf("che chiz ra taghir midahid?\n"
+               "1:esm\n"
+               "2:code_kelas\n"
+               "3:daneshamoozha\n"
+               "4:moalem_kelas\n"
+               );
+        cin >> entekhab_kelas;
+        if (entekhab_kelas == 1){
+            thaghir_esm_kelas(tedad_madares, madares, reshteh, code_kelas);
+        }
+        else if (entekhab_kelas == 2){
+            thaghir_code_kelas(tedad_madares, madares, code_kelas, code_jadid_kelas);
+        }
+        else if (entekhab_kelas == 3){
+            thaghir_daneshamooz(tedad_madares, madares, code_melli, reshteh, entekhab_daneshamooz);
+        }
+        else{
+            thaghir_moalem(tedad_madares, madares, code_melli, reshteh, entekhab_daneshamooz);
+        }
+    }
+    else{
+        thaghir_madreseh(tedad_madares, madares, code, entekhan_madreseh, reshteh, code_jadid);
     }
 }
-
-int main()
-{
-    int schoolsQuantity = 0;
-    cout << "enter the number of schools which you want to input" << endl;
-    cin >> schoolsQuantity;
-    School schools[schoolsQuantity];
-    int schoolds[schoolsQuantity];
-    string temp;
-    int choice = 0;
-    printf("what do you want to do?\n"
-           "1:setting the information for schools\n"
-           "2:viewing the information entered\n"
-           "3:show school's information by code\n"
-           "4:search teacher\n"
-           "5:delete an school\n"
-           "6:search students\n"
-           "7:showing teachers information working at a school\n"
-           "8:show name and national id of students\n"
-           "9:search by birth date\n"
-           "10:change data\n"
-           "11:terminate\n"
+void thaghir_madreseh(int tedad_madares, madreseh *madares, int code, int entekhan_madreseh, const string &reshteh,int code_jadid) {
+    printf("che chiz ra mikhahid taghir dahid?\n"
+           "1:esm\n"
+           "2:code madreseh\n"
            );
-    while (choice != 11)
+    cin >> entekhan_madreseh;
+    if (entekhan_madreseh == 1){
+        thaghir_esm_madreseh(tedad_madares, madares, code, reshteh);
+    }
+    else{
+        thaghir_code_madreseh(tedad_madares, madares, code, code_jadid);
+    }
+}
+void thaghir_code_madreseh(int tedad_madares,madreseh *madares, int code, int code_jadid) {
+    cout << "code jadid madreseh ra vared konid\n";
+    cin >> code_jadid;
+    for (int i = 0; i < tedad_madares; ++i){
+        if (code == madares[i].getCodeMadreseh())
+        {
+            madares[i].setCodeMadreseh(code_jadid);
+        }
+    }
+}
+void thaghir_esm_madreseh(int tedad_madares,  madreseh *madares, int code, const string &reshteh) {
+    cout << "esm jadid madreseh ra vared konid\n";
+    cin >> reshteh;
+    for (int i = 0; i < tedad_madares; ++i){
+        if (code == madares[i].getCodeMadreseh()){
+            madares[i].setEsm(reshteh);
+        }
+    }
+}
+void thaghir_moalem(int tedad_madares,  madreseh *madares, int code_melli, const string &reshteh,int entekhab_daneshamooz) {
+    int code_melli_jadid;
+    cout << "code melli moalem ra vared konid\n";
+    cin >> code_melli;
+    printf("che chiz ra mikhahid taghir dahid?\n"
+           "1:esm\n"
+           "2:famili\n"
+           "3:tarikh tavallod\n"
+           "4:code melli\n"
+    );
+    cin >> entekhab_daneshamooz;
+    if (entekhab_daneshamooz == 1){
+        thaghir_esm_moalem(tedad_madares, madares, code_melli, reshteh);
+    }
+    else if (entekhab_daneshamooz == 2){
+        thaghir_famili_moalem(tedad_madares, madares, code_melli, reshteh);
+    }
+    else if (entekhab_daneshamooz == 3){
+        thaghir_tarikh_tavallod_moalem(tedad_madares, madares, code_melli);
+    }
+    else{
+        thaghir_code_melli_moalem(tedad_madares, madares, code_melli, code_melli_jadid);
+    }
+}
+void thaghir_code_melli_moalem(int tedad_madares, madreseh *madares, int code_melli, int code_melli_jadid) {
+    cout << "code melli jadid ra vared konid\n";
+    cin >> code_melli_jadid;
+    for (int i = 0; i < tedad_madares; ++i)
     {
-        cin >> choice;
-        if (choice == 1)
+        for (int j = 0; j < tedad_class; ++j)
         {
-            for (int i = 0; i < schoolsQuantity; ++i)
+            if (code_melli == madares[i].kelasha[j].moalem_kelas.getCodeMelli())
             {
-                cout << "school number " << i +1 << endl << endl;
-                schools[i] = setSchoolInformation();
+                madares[i].kelasha[j].moalem_kelas.setCodeMelli(code_melli_jadid);
             }
         }
-        else if (choice == 2)
-        {
-            for (int i = 0; i < schoolsQuantity; ++i)
-            {
-                schoolds[i] = schools[i].getIdNumber();
-            }
-            int key;
-            int properLocation;
-            for (int i = 1; i < schoolsQuantity; i++)
-            {
-                key = schoolds[i];
-                for (properLocation = i - 1;properLocation >= 0 && key < schoolds[properLocation];properLocation--)
-                {
-                    schoolds[properLocation + 1] = schoolds[properLocation];
-                }
-                schoolds[properLocation + 1] = key;
-            }
-            for (int i = 0; i < schoolsQuantity; ++i)
-            {
-                if (schoolds[i] == 0)
-                {
-                    continue;
-                }
-                for (int j = 0; j < schoolsQuantity; ++j)
-                {
-                    if (schoolds[i] == schools[j].getIdNumber())
-                    {
-                        showAllData(schools[j]);
-                    }
-                }
+    }
+}
+void thaghir_tarikh_tavallod_moalem(int tedad_madares,  madreseh *madares, int code_melli) {
+    int rooz = 0;
+    int mah = 0;
+    int sal = 0;
+    cout << "ebteda sal bad mah bad rooz ra vered konid\n";
+    cin >> sal >> mah >> rooz;
+    for (int i = 0; i < tedad_madares; ++i){
+        for (int j = 0; j < tedad_class; ++j){
+            if (code_melli == madares[i].kelasha[j].moalem_kelas.getCodeMelli()){
+                madares[i].kelasha[j].moalem_kelas.setRoozTavallod(rooz);
+                madares[i].kelasha[j].moalem_kelas.setMahTavallod(mah);
+                madares[i].kelasha[j].moalem_kelas.setSalTavallod(sal);
             }
         }
-        else if (choice == 3)
-        {
-            int id = 0;
-            cout << "enter the id of your wanted school\n";
-            cin  >> id;
-            for (int j = 0; j < schoolsQuantity; ++j)
-            {
-                if (id == schools[j].getIdNumber())
-                {
-                    showAllData(schools[j]);
-                }
+    }
+}
+void thaghir_famili_moalem(int tedad_madares,madreseh *madares, int code_melli, const string &reshteh) {
+    cout << "famili jadid ra vared konid\n";
+    cin >> reshteh;
+    for (int i = 0; i < tedad_madares; ++i){
+        for (int j = 0; j < tedad_class; ++j){
+            if (code_melli == madares[i].kelasha[j].moalem_kelas.getCodeMelli()){
+                madares[i].kelasha[j].moalem_kelas.setFamili(reshteh);
             }
         }
-        else if (choice == 5)
-        {
-            int id = 0;
-            cout << "enter the id of an school which you want to delete\n";
-            cin >> id;
-            int target = 0;
-            for (int i = 0; i < schoolsQuantity; ++i)
-            {
-                if (id == schools[i].getIdNumber())
-                {
-                    target = i;
-                    break;
-                }
-            }
-            schools[target].setIdNumber(0);
-        }
-        else if (choice == 4)
-        {
-            int id = 0;
-            cout << "enter the national id of the teacher\n";
-            cin >> id;
-            for (int i = 0; i < schoolsQuantity; ++i)
-            {
-                for (int j = 0; j < CLASSES; ++j)
-                {
-                    if (schools[i].classes[j].teacher.getNationalId() == id)
-                    {
-                        cout << schools[i].getName() << endl;
-                    }
-                }
+    }
+}
+void thaghir_esm_moalem(int tedad_madares,madreseh *madares, int code_melli, const string &reshteh) {
+    cout << "esm jadid ra vared konid\n";
+    cin >> reshteh;
+    for (int i = 0; i < tedad_madares; ++i){
+        for (int j = 0; j < tedad_class; ++j){
+            if (code_melli == madares[i].kelasha[j].moalem_kelas.getCodeMelli()){
+                madares[i].kelasha[j].moalem_kelas.setEsm(reshteh);
             }
         }
-        else if (choice == 6)
-        {
-            int id = 0;
-            cout << "enter the national id of the student\n";
-            cin >> id;
-            for (int i = 0; i < schoolsQuantity; ++i)
-            {
-                for (int j = 0; j < CLASSES; ++j)
-                {
-                    for (int k = 0; k < quantitySTUDENTS; ++k)
-                    {
-                        if (schools[i].classes[j].students[k].getNationalId() == id)
-                        {
-                            cout << schools[i].getName() << endl;
-                            cout << schools[i].classes[j].teacher.getFirstName() << " " << schools[i].classes[j].teacher.getLastName() << endl;
-                        }
-                    }
+    }
+}
+void thaghir_daneshamooz(int tedad_madares,madreseh *madares, int code_melli, const string &reshteh,int entekhab_daneshamooz) {
+    int code_melli_jadid = 0;
+    cout << "code melli danesh amooz ra vared konid\n";
+    cin >> code_melli;
+    printf("che chiz ra mikhahid taghir dahid?\n"
+           "1:esm\n"
+           "2:famili\n"
+           "3:tarikh tavallod\n"
+           "4:code melli\n"
+    );
+    cin >> entekhab_daneshamooz;
+    if (entekhab_daneshamooz == 1){
+        thaghir_esm_daneshamooz(tedad_madares, madares, code_melli, reshteh);
+    }
+    else if (entekhab_daneshamooz == 2){
+        thaghir_famili_daneshamooz(tedad_madares, madares, code_melli, reshteh);
+    }
+    else if (entekhab_daneshamooz == 3){
+        thaghir_tarikh_tavallod_daneshamooz(tedad_madares, madares, code_melli);
+    }
+    else{
+        thaghir_code_melli_daneshamooz(tedad_madares, madares, code_melli, code_melli_jadid);
+    }
+}
+void thaghir_code_melli_daneshamooz(int tedad_madares,madreseh *madares, int code_melli, int code_melli_jadid) {
+    cout << "code melli jadid ra vared konid\n";
+    cin >> code_melli_jadid;
+    for (int i = 0; i < tedad_madares; ++i){
+        for (int j = 0; j < tedad_class; ++j){
+            if (code_melli == madares[i].kelasha[j].moalem_kelas.getCodeMelli()){
+                madares[i].kelasha[j].moalem_kelas.setCodeMelli(code_melli_jadid);
+            }
+        }
+    }
+}
+void thaghir_tarikh_tavallod_daneshamooz(int tedad_madares,madreseh *madares, int code_melli) {
+    int rooz = 0;
+    int mah = 0;
+    int sal = 0;
+    cout << "ebteda rooz bad mah bad sal ra vared konid\n";
+    cin >> sal >> mah >> rooz;
+    for (int i = 0; i < tedad_madares; ++i){
+        for (int j = 0; j < tedad_class; ++j){
+            for (int k = 0; k < tedad_daneshamooz; ++k){
+                if (code_melli == madares[i].kelasha[j].daneshamoozha[k].getCodeMelli()){
+                    madares[i].kelasha[j].daneshamoozha[k].setRoozTavallod(rooz);
+                    madares[i].kelasha[j].daneshamoozha[k].setMahTavallod(mah);
+                    madares[i].kelasha[j].daneshamoozha[k].setSalTavallod(sal);
                 }
             }
         }
-        else if (choice == 7)
-        {
-            int id = 0;
-            cout << "enter the id of the school\n";
-            cin >> id;
-            for (int i = 0; i < schoolsQuantity; ++i)
-            {
-                if (schools[i].getIdNumber() == id)
-                {
-                    for (int j = 0; j < CLASSES; ++j)
-                    {
-                        cout << schools[i].classes[j].teacher.getFirstName() << " " << schools[i].classes[j].teacher.getLastName() << endl;
-                        cout << schools[i].classes[j].teacher.getNationalId() << endl;
-                    }
+    }
+}
+void thaghir_famili_daneshamooz(int tedad_madares,madreseh *madares, int code_melli, const string &reshteh) {
+    cout << "famili jadid ra vared konid\n";
+    cin >> reshteh;
+    for (int i = 0; i < tedad_madares; ++i){
+        for (int j = 0; j < tedad_class; ++j){
+            for (int k = 0; k < tedad_daneshamooz; ++k){
+                if (code_melli == madares[i].kelasha[j].daneshamoozha[k].getCodeMelli()){
+                    madares[i].kelasha[j].daneshamoozha[k].setFamili(reshteh);
                 }
             }
         }
-        else if (choice == 8)
-        {
-            for (int i = 0; i < schoolsQuantity; ++i)
-            {
-                for (int j = 0; j < CLASSES; ++j)
-                {
-                    for (int k = 0; k < quantitySTUDENTS; ++k)
-                    {
-                        cout << schools[i].classes[j].students[k].getFirstName() << " " << schools[i].classes[j].students[k].getLastName() << endl;
-                        cout << schools[i].classes[j].students[k].getNationalId() << endl;
-                    }
+    }
+}
+void thaghir_esm_daneshamooz(int tedad_madares,madreseh *madares, int code_melli, const string &reshteh) {
+    cout << "esm jadid ra vared konid\n";
+    cin >> reshteh;
+    for (int i = 0; i < tedad_madares; ++i){
+        for (int j = 0; j < tedad_class; ++j){
+            for (int k = 0; k < tedad_daneshamooz; ++k){
+                if (code_melli == madares[i].kelasha[j].daneshamoozha[k].getCodeMelli()){
+                    madares[i].kelasha[j].daneshamoozha[k].setEsm(reshteh);
                 }
             }
         }
-        else if (choice == 9)
-        {
-            int day = 0;
-            int month = 0;
-            int year = 0;
-            cout << "enter the year then the month then the day\n";
-            cin >> year >> month >> day;
-            for (int i = 0; i < schoolsQuantity; ++i)
-            {
-                for (int j = 0; j < CLASSES; ++j)
+    }
+}
+void thaghir_code_kelas(int tedad_madares,madreseh *madares, int code_kelas, int code_jadid_kelas) {
+    cout << "code jadid kelas chist?\n";
+    cin >> code_jadid_kelas;
+    for (int i = 0; i < tedad_madares; ++i){
+        for (int j = 0; j < tedad_class; ++j){
+            if (code_kelas == madares[i].kelasha[j].getCodeKelas()){
+                madares[i].kelasha[j].setCodeKelas(code_jadid_kelas);
+            }
+        }
+    }
+}
+void thaghir_esm_kelas(int tedad_madares,madreseh *madares, const string &reshteh, int code_kelas) {
+    cout << "esm jadid kelas ra vared konid\n";
+    cin >> reshteh;
+    for (int i = 0; i < tedad_madares; ++i){
+        for (int j = 0; j < tedad_class; ++j){
+            if (code_kelas == madares[i].kelasha[j].getCodeKelas()){
+                madares[i].kelasha[j].setEsm(reshteh);
+            }
+        }
+    }
+}
+void nohomi(int tedad_madares,madreseh *madares) {
+    int rooz = 0;
+    int mah = 0;
+    int sal = 0;
+    cout << "ebteda sal bad mad bad rooz ra vared konid\n";
+    cin >> sal >> mah >> rooz;
+    for (int i = 0; i < tedad_madares; ++i){
+        for (int j = 0; j < tedad_class; ++j){
+            for (int k = 0; k < tedad_daneshamooz; ++k){
+                if (madares[i].kelasha[j].daneshamoozha[k].getRoozTavallod() == rooz && madares[i].kelasha[j].daneshamoozha[k].getMahTavallod() == mah && madares[i].kelasha[j].daneshamoozha[k].getSalTavallod() == sal)
                 {
-                    for (int k = 0; k < quantitySTUDENTS; ++k)
-                    {
-                        if (schools[i].classes[j].students[k].getBirthDay() == day && schools[i].classes[j].students[k].getBirthMonth() == month && schools[i].classes[j].students[k].getBirthYear() == year)
-                        {
-                            cout << schools[i].classes[j].students[k].getFirstName() << " " << schools[i].classes[j].students[k].getLastName() << endl;
-                        }
-                    }
+                    cout << madares[i].kelasha[j].daneshamoozha[k].getEsm() << " " << madares[i].kelasha[j].daneshamoozha[k].getFamili() << endl;
                 }
             }
         }
-        else if (choice == 10)
-        {
-            int id = 0;
-            int nationalNum = 0;
-            int classChoice = 0;
-            int schoolChoice = 0;
-            string str = 0;
-            int newid = 0;
-            int classid = 0;
-            int newClassId = 0;
-            int studentChoice = 0;
-            cout << "enter the id of the school which you want to change\n";
-            cin >> id;
-            cout << "do you want to change a class in this school?(1 for yes and 0 for no)\n";
-            cin >> classChoice;
-            if (id == 1)
-            {
-                cout << "enter the id of the class that you want to change\n";
-                cin >> classid;
-                printf("what do you want to change about this class\n"
-                       "1:name\n"
-                       "2:id\n"
-                       "3:students\n"
-                       "4:teacher\n"
-                       );
-                cin >> classChoice;
-                if (classChoice == 1)
-                {
-                    cout << "what is the new name for this class\n";
-                    cin >> str;
-                    for (int i = 0; i < schoolsQuantity; ++i)
-                    {
-                        for (int j = 0; j < CLASSES; ++j)
-                        {
-                            if (classid == schools[i].classes[j].getId())
-                            {
-                                schools[i].classes[j].setName(str);
-                            }
-                        }
-                    }
-                }
-                else if (classChoice == 2)
-                {
-                    cout << "what is the new ID for this class\n";
-                    cin >> newClassId;
-                    for (int i = 0; i < schoolsQuantity; ++i)
-                    {
-                        for (int j = 0; j < CLASSES; ++j)
-                        {
-                            if (classid == schools[i].classes[j].getId())
-                            {
-                                schools[i].classes[j].setId(newClassId);
-                            }
-                        }
-                    }
-                }
-                else if (classChoice == 3)
-                {
-                    int newNationalID = 0;
-                    cout << "enter the national number of the student\n";
-                    cin >> nationalNum;
-                    printf("what do you want to change about this student\n"
-                           "1:first name\n"
-                           "2:last name\n"
-                           "3:birth date\n"
-                           "4:national id\n"
-                    );
-                    cin >> studentChoice;
-                    if (studentChoice == 1)
-                    {
-                        cout << "enter the new first name\n";
-                        cin >> str;
-                        for (int i = 0; i < schoolsQuantity; ++i)
-                        {
-                            for (int j = 0; j < CLASSES; ++j)
-                            {
-                                for (int k = 0; k < quantitySTUDENTS; ++k)
-                                {
-                                    if (nationalNum == schools[i].classes[j].students[k].getNationalId())
-                                    {
-                                        schools[i].classes[j].students[k].setFirstName(str);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    else if (studentChoice == 2)
-                    {
-                        cout << "enter the new last name\n";
-                        cin >> str;
-                        for (int i = 0; i < schoolsQuantity; ++i)
-                        {
-                            for (int j = 0; j < CLASSES; ++j)
-                            {
-                                for (int k = 0; k < quantitySTUDENTS; ++k)
-                                {
-                                    if (nationalNum == schools[i].classes[j].students[k].getNationalId())
-                                    {
-                                        schools[i].classes[j].students[k].setLastName(str);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    else if (studentChoice == 3)
-                    {
-                        int day = 0;
-                        int month = 0;
-                        int year = 0;
-                        cout << "enter the year then the month then the day\n";
-                        cin >> year >> month >> day;
-                        for (int i = 0; i < schoolsQuantity; ++i)
-                        {
-                            for (int j = 0; j < CLASSES; ++j)
-                            {
-                                for (int k = 0; k < quantitySTUDENTS; ++k)
-                                {
-                                    if (nationalNum == schools[i].classes[j].students[k].getNationalId())
-                                    {
-                                        schools[i].classes[j].students[k].setBirthDay(day);
-                                        schools[i].classes[j].students[k].setBirthMonth(month);
-                                        schools[i].classes[j].students[k].setBirthYear(year);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        cout << "enter the new national id\n";
-                        cin >> newNationalID;
-                        for (int i = 0; i < schoolsQuantity; ++i)
-                        {
-                            for (int j = 0; j < CLASSES; ++j)
-                            {
-                                if (nationalNum == schools[i].classes[j].teacher.getNationalId())
-                                {
-                                    schools[i].classes[j].teacher.setNationalId(newNationalID);
-                                }
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    int newNationalID = 0;
-                    cout << "enter the national number of the teacher\n";
-                    cin >> nationalNum;
-                    printf("what do you want to change about this teacher\n"
-                           "1:first name\n"
-                           "2:last name\n"
-                           "3:birth date\n"
-                           "4:national id\n"
-                    );
-                    cin >> studentChoice;
-                    if (studentChoice == 1)
-                    {
-                        cout << "enter the new first name\n";
-                        cin >> str;
-                        for (int i = 0; i < schoolsQuantity; ++i)
-                        {
-                            for (int j = 0; j < CLASSES; ++j)
-                            {
-                                if (nationalNum == schools[i].classes[j].teacher.getNationalId())
-                                {
-                                    schools[i].classes[j].teacher.setFirstName(str);
-                                }
-                            }
-                        }
-                    }
-                    else if (studentChoice == 2)
-                    {
-                        cout << "enter the new last name\n";
-                        cin >> str;
-                        for (int i = 0; i < schoolsQuantity; ++i)
-                        {
-                            for (int j = 0; j < CLASSES; ++j)
-                            {
-                                if (nationalNum == schools[i].classes[j].teacher.getNationalId())
-                                {
-                                    schools[i].classes[j].teacher.setLastName(str);
-                                }
-                            }
-                        }
-                    }
-                    else if (studentChoice == 3)
-                    {
-                        int day = 0;
-                        int month = 0;
-                        int year = 0;
-                        cout << "enter the year then the month then the day\n";
-                        cin >> year >> month >> day;
-                        for (int i = 0; i < schoolsQuantity; ++i)
-                        {
-                            for (int j = 0; j < CLASSES; ++j)
-                            {
-                                if (nationalNum == schools[i].classes[j].teacher.getNationalId())
-                                {
-                                    schools[i].classes[j].teacher.setBirthDay(day);
-                                    schools[i].classes[j].teacher.setBirthMonth(month);
-                                    schools[i].classes[j].teacher.setBirthYear(year);
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        cout << "enter the new national id\n";
-                        cin >> newNationalID;
-                        for (int i = 0; i < schoolsQuantity; ++i)
-                        {
-                            for (int j = 0; j < CLASSES; ++j)
-                            {
-                                if (nationalNum == schools[i].classes[j].teacher.getNationalId())
-                                {
-                                    schools[i].classes[j].teacher.setNationalId(newNationalID);
-                                }
-                            }
-                        }
-                    }
-                }
+    }
+}
+void hashtomi(int tedad_madares, madreseh *madares) {
+    for (int i = 0; i < tedad_madares; ++i){
+        for (int j = 0; j < tedad_class; ++j){
+            for (int k = 0; k < tedad_daneshamooz; ++k){
+                cout << madares[i].kelasha[j].daneshamoozha[k].getEsm() << " " << madares[i].kelasha[j].daneshamoozha[k].getFamili() << endl;
+                cout << madares[i].kelasha[j].daneshamoozha[k].getCodeMelli() << endl;
             }
-            else
-            {
-                printf("what do you want to change about this school?\n"
-                       "1:name\n"
-                       "2:id\n"
-                       );
-                cin >> schoolChoice;
-                if (schoolChoice == 1)
-                {
-                    cout << "enter the new name for this school\n";
-                    cin >> str;
-                    for (int i = 0; i < schoolsQuantity; ++i)
-                    {
-                        if (id == schools[i].getIdNumber())
-                        {
-                            schools[i].setName(str);
-                        }
-                    }
-                }
-                else
-                {
-                    cout << "enter the new id for this school\n";
-                    cin >> newid;
-                    for (int i = 0; i < schoolsQuantity; ++i)
-                    {
-                        if (id == schools[i].getIdNumber())
-                        {
-                            schools[i].setIdNumber(newid);
-                        }
-                    }
+        }
+    }
+}
+void haftomi(int tedad_madares,madreseh *madares) {
+    int code = 0;
+    cout << "code madreseh ra vared konid\n";
+    cin >> code;
+    for (int i = 0; i < tedad_madares; ++i){
+        if (madares[i].getCodeMadreseh() == code){
+            for (int j = 0; j < tedad_class; ++j){
+                cout << madares[i].kelasha[j].moalem_kelas.getEsm() << " " << madares[i].kelasha[j].moalem_kelas.getFamili() << endl;
+                cout << madares[i].kelasha[j].moalem_kelas.getCodeMelli() << endl;
+            }
+        }
+    }
+}
+void shishomi(int tedad_madares,madreseh *madares) {
+    int code = 0;
+    string esm;
+    string famili;
+    printf("ebteda esm va sepas famili danesh amooz ra vared konid\n");
+    cin >> esm >> famili;
+    for (int i = 0; i < tedad_madares; ++i){
+        for (int j = 0; j < tedad_class; ++j){
+            for (int k = 0; k < tedad_daneshamooz; ++k){
+                if (madares[i].kelasha[j].daneshamoozha[k].getEsm() == esm && madares[i].kelasha[j].daneshamoozha[k].getFamili() == famili){
+                    cout << madares[i].getEsm() << endl;
+                    cout << madares[i].kelasha[j].moalem_kelas.getEsm() << " " << madares[i].kelasha[j].moalem_kelas.getFamili() << endl;
                 }
             }
         }
-        else
-        {
-            cout << "have a nice time\n";
+    }
+}
+void chaharomi(int tedad_madares,madreseh *madares) {
+    int code = 0;
+    printf("code melli moalem ra vared konid\n");
+    scanf("%d",&code);
+    for (int i = 0; i < tedad_madares; ++i){
+        for (int j = 0; j < tedad_class; ++j){
+            if (madares[i].kelasha[j].moalem_kelas.getCodeMelli() == code)
+            {
+                cout << madares[i].getEsm() << endl;
+            }
+        }
+    }
+}
+void panjomi(int tedad_madares, madreseh *madares) {
+    int code_madreseh = 0;
+    printf("code madreseh'i ke mikhain hazf beshavad ra vared konid\n");
+    scanf("%d",&code_madreseh);
+    int madreseh_hadaf = 0;
+    for (int i = 0; i < tedad_madares; ++i){
+        if (code_madreseh == madares[i].getCodeMadreseh()){
+            madreseh_hadaf = i;
             break;
         }
     }
-
+    madares[madreseh_hadaf].setCodeMadreseh(0);
 }
-
-int length(int id)
-{
-    int len = 0;
-    while (id > 0)
-    {
-        id = id / 10;
-        len++;
+void sevvomi(int tedad_madares,madreseh *madares) {
+    int code_kelas = 0;
+    printf("code kelas ra vared konid\n");
+    scanf("%d",&code_kelas);
+    for (int j = 0; j < tedad_madares; ++j){
+        if (code_kelas == madares[j].getCodeMadreseh()){
+            neshan_dadan_hame_etelaat(madares[j]);
+        }
     }
-    return len;
 }
+void dovvomi(int tedad_madares,madreseh *madares, int *code_hame_marares) {
+    for (int i = 0; i < tedad_madares; ++i){
+        code_hame_marares[i] = madares[i].getCodeMadreseh();
+    }
+    moratab_sazi(tedad_madares, code_hame_marares);
+    for (int i = 0; i < tedad_madares; ++i){
+        if (code_hame_marares[i] == 0){
+            continue;
+        }
+        for (int j = 0; j < tedad_madares; ++j){
+            if (code_hame_marares[i] == madares[j].getCodeMadreseh()){
+                neshan_dadan_hame_etelaat(madares[j]);
+            }
+        }
+    }
+}
+void yek(int tedad_madares,madreseh *madares) {
+    for (int i = 0; i < tedad_madares; ++i){
+        printf("madreseh shomare %d",i + 1);
+        madares[i] = gereftan_etelaat_madreseh();
+    }
+}
+void nemayesh_menu_asli() {
+    cout << "che kari mikhai anjam bedi?%n";
+    cout << "1:dadan etelaat madreseh%n";
+    cout << "2:neshan dadan etelaat%n";
+    cout << "3:neshan dadan etelaat madreseh bar asas code vorodi%n";
+    cout << "4:serch moalem_kelas%n";
+    cout << "5:hazf%n";
+    cout << "6:serch daneshamoozha%n";
+    cout << "7:neshan dadan moaleman yek madreseh%n";
+    cout << "8:neshan dadan code melli va esm danesh amooz ha%n";
+    cout << "9:serch bar asas tarikh tavallod%n";
+    cout << "10:taghir dade ha %n";
+    cout << "11:khoroj%n";
+}
+void moratab_sazi(int tedad_madares, int *code_hame_marares) {
+    int shakhes;
+    int mogheiat_monaseb;
+    for (int i = 1; i < tedad_madares; i++){
+        shakhes = code_hame_marares[i];
+        for (mogheiat_monaseb = i - 1; mogheiat_monaseb >= 0 && shakhes < code_hame_marares[mogheiat_monaseb]; mogheiat_monaseb--){
+            code_hame_marares[mogheiat_monaseb + 1] = code_hame_marares[mogheiat_monaseb];
+        }
+        code_hame_marares[mogheiat_monaseb + 1] = shakhes;
+    }
+}
+void neshan_dadan_etelaat_class(kelas kelas){
+    printf("esm kelas: %s%n",kelas.getEsm().c_str());
+    printf("code_kelas: %d%n",kelas.getCodeKelas());
+    printf("esm moalem_kelas : %s %s%n",kelas.moalem_kelas.getEsm().c_str(),kelas.moalem_kelas.getFamili().c_str());
+    printf("code melli moalem_kelas : %d%n",kelas.moalem_kelas.getCodeMelli());
+    printf("tarikh tavallod moalem_kelas's : %d/%d/%d%n",kelas.moalem_kelas.getSalTavallod(),kelas.moalem_kelas.getMahTavallod(),kelas.moalem_kelas.getRoozTavallod());
+    for (int i = 0; i < tedad_daneshamooz; ++i){
+        printf("student: %d%n",i + 1);
+        printf("esm danesh amooz: %s %s%n",kelas.daneshamoozha[i].getEsm().c_str(),kelas.daneshamoozha[i].getFamili().c_str());
+        printf("code melli danesh amooz: %d%n",kelas.daneshamoozha[i].getCodeMelli());
+        printf("tarikh tavallod danesh amooz: %d/%d/%d%n",kelas.daneshamoozha[i].getSalTavallod(),kelas.daneshamoozha[i].getMahTavallod(),kelas.daneshamoozha[i].getRoozTavallod());
+    }
+}
+void neshan_dadan_hame_etelaat(madreseh inn_madreseh){
+    printf("************************%n");
+    printf("esm madreseh: %s%n",inn_madreseh.getEsm().c_str());
 
-bool nationalIdValidationCheck(int id)
+    cout << "code madresh: " << inn_madreseh.getCodeMadreseh() << endl;
+    for (int i = 0; i < tedad_class; ++i){
+        printf("class number %d%n",i + 1);
+        neshan_dadan_etelaat_class(inn_madreseh.kelasha[i]);
+    }
+}
+int andaze(int adad)
 {
-    if (length(id) == 10)
-    {
+    int andaze = 0;
+    while (adad > 0){
+        adad = adad / 10;
+        andaze++;
+    }
+    return andaze;
+}
+bool dorosti_code_melli(int code_melli)
+{
+    if (andaze(code_melli) == 10){
         return true;
     }
-    else
-    {
+    else{
         return false;
     }
 }
-
-bool nameValidationCheck(string firstName,string lastName)
-{
-    bool isFirstNameValid = true;
-    bool isLastNameValid = true;
-    for (int i = 0; i < firstName.length(); ++i)
-    {
-        if (!((firstName[i] >= 65 && firstName[i] <= 90) || (firstName[i] >= 97 && firstName[i] <= 122)))
-        {
-            isFirstNameValid = false;
+bool dorosti_esm(string esm, string famili){
+    bool dorosti_esm = true;
+    bool dorosti_famili = true;
+    for (int i = 0; i < esm.length(); ++i){
+        if (!((esm[i] >= 65 && esm[i] <= 90) || (esm[i] >= 97 && esm[i] <= 122))){
+            dorosti_esm = false;
         }
     }
-    for (int i = 0; i < lastName.length(); ++i)
-    {
-        if (!((lastName[i] >= 65 && lastName[i] <= 90) || (lastName[i] >= 97 && lastName[i] <= 122)))
-        {
-            isLastNameValid = false;
+    for (int i = 0; i < famili.length(); ++i){
+        if (!((famili[i] >= 65 && famili[i] <= 90) || (famili[i] >= 97 && famili[i] <= 122))){
+            dorosti_famili = false;
         }
     }
-    return isFirstNameValid && isLastNameValid;
+    return dorosti_esm && dorosti_famili;
 }
-
- Student setStudentInformation()
+danesh_amooz sabt_etelaat_danesh_amooz()
 {
-    Student student;
+    danesh_amooz daneshAmooz;
     string tempstr;
     string tempstr1;
     int tempnum;
-    cout << "enter the first name of the student" << endl;
+    cout << "esm danesh amooz ra vared konid" << endl;
     cin >> tempstr;
-    cout << "enter the last name of the student" << endl;
+    cout << "famili danesh amooz ra vared konid" << endl;
     cin >> tempstr1;
-    if (!nameValidationCheck(tempstr,tempstr1))
-    {
-        cout << "wrong name format\nthis is a fatal error\nstudent assigning failed\n";
-        Student emptyStudent;
-        return emptyStudent;
+    if (!dorosti_esm(tempstr, tempstr1)){
+        printf("vorodi nadorost\ndanesh amooz sabt nashod\n");
+        danesh_amooz daneshAmoozKhali;
+        return daneshAmoozKhali;
     }
-    student.setFirstName(tempstr);
-    student.setLastName(tempstr1);
-    cout << "enter the nationalId of the student" << endl;
+    daneshAmooz.setEsm(tempstr);
+    daneshAmooz.setFamili(tempstr1);
+    cout << "code melli danesh amooz ra vared konid" << endl;
     cin >> tempnum;
-    if (!nationalIdValidationCheck(tempnum))
-    {
-        cout << "wrong national id format\nthis is a fatal error\nstudent assigning failed\n";
-        Student emptyStudent;
-        return emptyStudent;
+    if (!dorosti_code_melli(tempnum)){
+        printf("vorodi nadorost\ndanesh amooz sabt nashod\n");
+        danesh_amooz daneshAmoozKhali;
+        return daneshAmoozKhali;
     }
-    student.setNationalId(tempnum);
-    cout << "enter the birth day of the student" << endl;
+    daneshAmooz.setCodeMelli(tempnum);
+    cout << "rooz tavallod danesh amooz ra vared konid" << endl;
     cin >> tempnum;
-    student.setBirthDay(tempnum);
-    cout << "enter the birth month of the student" << endl;
+    daneshAmooz.setRoozTavallod(tempnum);
+    cout << "mah tavallod danesh amooz ra vared konid" << endl;
     cin >> tempnum;
-    student.setBirthMonth(tempnum);
-    cout << "enter the birth year of the student" << endl;
+    daneshAmooz.setMahTavallod(tempnum);
+    cout << "sal tavallod danesh amooz ra vard konid" << endl;
     cin >> tempnum;
-    student.setBirthYear(tempnum);
-    return student;
+    daneshAmooz.setSalTavallod(tempnum);
+    return daneshAmooz;
 }
-
-Teacher setTeacherInformation()
+moalem sabt_etelaat_moalem()
 {
-    Teacher teacher;
+    moalem amoozgar;
     string tempstr;
     string tempstr1;
     int tempnum;
-    cout << "enter the first name of the teacher" << endl;
+    cout << "esm amoozgar ra vared konid" << endl;
     cin >> tempstr;
-    cout << "enter the last name of the teacher" << endl;
+    cout << "famili amoozgar ra vared konid" << endl;
     cin >> tempstr1;
-    if (!nameValidationCheck(tempstr,tempstr1))
-    {
-        cout << "wrong name format\nthis is a fatal error\nteacher assigning failed\n";
-        Teacher emptyTeacher;
-        return emptyTeacher;
+    if (!dorosti_esm(tempstr, tempstr1)){
+        printf("vorodi nadorost\nmoalem sabt nashod\n");
+        moalem moalemKhali;
+        return moalemKhali;
     }
-    teacher.setFirstName(tempstr);
-    teacher.setLastName(tempstr1);
-    cout << "enter the nationalId of the teacher" << endl;
+    amoozgar.setEsm(tempstr);
+    amoozgar.setFamili(tempstr1);
+    cout << "code melli moalem ra vared konid" << endl;
     cin >> tempnum;
-    if (!nationalIdValidationCheck(tempnum))
-    {
-        cout << "wrong national id format\nthis is a fatal error\nteacher assigning failed\n";
-        Teacher emptyTeacher;
-        return emptyTeacher;
+    if (!dorosti_code_melli(tempnum)){
+        printf("vorodi nadorost\nmoalem sabt nashod\n");
+        moalem moalemKhali;
+        return moalemKhali;
     }
-    teacher.setNationalId(tempnum);
-    cout << "enter the birth day of the teacher" << endl;
+    amoozgar.setCodeMelli(tempnum);
     cin >> tempnum;
-    teacher.setBirthDay(tempnum);
-    cout << "enter the birth month of the teacher" << endl;
+    cout << "rooz tavallod moalem ra vared konid" << endl;
+    amoozgar.setRoozTavallod(tempnum);
+    cout << "mah tavallod moalem ra vared konid" << endl;
     cin >> tempnum;
-    teacher.setBirthMonth(tempnum);
-    cout << "enter the birth year of the teacher" << endl;
+    amoozgar.setMahTavallod(tempnum);
+    cout << "sal tavallod moalem ra vared konid" << endl;
     cin >> tempnum;
-    teacher.setBirthYear(tempnum);
-    return teacher;
+    amoozgar.setSalTavallod(tempnum);
+    return amoozgar;
 }
-
-SchoolClass setClassesInformation()
-{
-    SchoolClass schoolClass;
+kelas sabt_etelaat_kelas(){
+    kelas kelass;
     string tempstr;
     int tempnum;
-    cout << "enter the name of the class" << endl;
+    cout << "esm kelass ra vared konid" << endl;
     cin >> tempstr;
-    schoolClass.setName(tempstr);
-    cout << "enter the id of the class" << endl;
+    kelass.setEsm(tempstr);
+    cout << "code kelas ra vared konid" << endl;
     cin >> tempnum;
-    schoolClass.setId(tempnum);
-    Student students;
-    Teacher teacher = setTeacherInformation();
-    schoolClass.teacher = teacher;
-    for (int i = 0; i < quantitySTUDENTS; ++i)
-    {
-        cout << "student number " << i + 1 << endl;
-        students = setStudentInformation();
-        schoolClass.students[i] = students;
+    kelass.setCodeKelas(tempnum);
+    danesh_amooz students;
+    moalem moalem_kelas = sabt_etelaat_moalem();
+    kelass.moalem_kelas = moalem_kelas;
+    for (int i = 0; i < tedad_daneshamooz; ++i){
+        cout << "danesh amooz shomare " << i + 1 << endl;
+        students = sabt_etelaat_danesh_amooz();
+        kelass.daneshamoozha[i] = students;
     }
-    return schoolClass;
+    return kelass;
 }
-
-School setSchoolInformation()
-{
-    School school;
+madreseh gereftan_etelaat_madreseh(){
+    madreseh inn_madreseh;
     string tempstr;
     int tempnum;
-    cout << "enter the name of the school" << endl;
+    cout << "esm madreseh ra vared konid" << endl;
     cin >> tempstr;
-    school.setName(tempstr);
-    cout << "enter the ID of the school" << endl;
+    inn_madreseh.setEsm(tempstr);
+    cout << "code madreseh ra vared konid" << endl;
     cin >> tempnum;
-    school.setIdNumber(tempnum);
-    SchoolClass schoolClasses;
-    for (int j = 0; j < CLASSES; ++j)
-    {
-        cout << "class number " << j + 1 << endl << endl;
-        schoolClasses = setClassesInformation();
-        school.classes[j] = schoolClasses;
+    inn_madreseh.setCodeMadreseh(tempnum);
+    kelas schoolClasses;
+    for (int j = 0; j < tedad_class; ++j){
+        cout << "kelas shomare " << j + 1 << endl << endl;
+        schoolClasses = sabt_etelaat_kelas();
+        inn_madreseh.kelasha[j] = schoolClasses;
     }
-    return school;
+    return inn_madreseh;
 }
