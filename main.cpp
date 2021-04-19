@@ -1,10 +1,9 @@
 #include <iostream>
-#include <vector>
 #include "string"
 using namespace std;
 
-const int CLASSES = 1;
-const int quantitySTUDENTS = 1;
+const int CLASSES = 10;
+const int quantitySTUDENTS = 30;
 
 class Teacher
 {
@@ -274,9 +273,10 @@ int main()
            "7:showing teachers information working at a school\n"
            "8:show name and national id of students\n"
            "9:search by birth date\n"
-           "10:terminate\n"
+           "10:change data\n"
+           "11:terminate\n"
            );
-    while (choice != 10)
+    while (choice != 11)
     {
         cin >> choice;
         if (choice == 1)
@@ -431,6 +431,261 @@ int main()
                         if (schools[i].classes[j].students[k].getBirthDay() == day && schools[i].classes[j].students[k].getBirthMonth() == month && schools[i].classes[j].students[k].getBirthYear() == year)
                         {
                             cout << schools[i].classes[j].students[k].getFirstName() << " " << schools[i].classes[j].students[k].getLastName() << endl;
+                        }
+                    }
+                }
+            }
+        }
+        else if (choice == 10)
+        {
+            int id = 0;
+            int nationalNum = 0;
+            int classChoice = 0;
+            int schoolChoice = 0;
+            string str = 0;
+            int newid = 0;
+            int classid = 0;
+            int newClassId = 0;
+            int studentChoice = 0;
+            cout << "enter the id of the school which you want to change\n";
+            cin >> id;
+            cout << "do you want to change a class in this school?(1 for yes and 0 for no)\n";
+            cin >> classChoice;
+            if (id == 1)
+            {
+                cout << "enter the id of the class that you want to change\n";
+                cin >> classid;
+                printf("what do you want to change about this class\n"
+                       "1:name\n"
+                       "2:id\n"
+                       "3:students\n"
+                       "4:teacher\n"
+                       );
+                cin >> classChoice;
+                if (classChoice == 1)
+                {
+                    cout << "what is the new name for this class\n";
+                    cin >> str;
+                    for (int i = 0; i < schoolsQuantity; ++i)
+                    {
+                        for (int j = 0; j < CLASSES; ++j)
+                        {
+                            if (classid == schools[i].classes[j].getId())
+                            {
+                                schools[i].classes[j].setName(str);
+                            }
+                        }
+                    }
+                }
+                else if (classChoice == 2)
+                {
+                    cout << "what is the new ID for this class\n";
+                    cin >> newClassId;
+                    for (int i = 0; i < schoolsQuantity; ++i)
+                    {
+                        for (int j = 0; j < CLASSES; ++j)
+                        {
+                            if (classid == schools[i].classes[j].getId())
+                            {
+                                schools[i].classes[j].setId(newClassId);
+                            }
+                        }
+                    }
+                }
+                else if (classChoice == 3)
+                {
+                    int newNationalID = 0;
+                    cout << "enter the national number of the student\n";
+                    cin >> nationalNum;
+                    printf("what do you want to change about this student\n"
+                           "1:first name\n"
+                           "2:last name\n"
+                           "3:birth date\n"
+                           "4:national id\n"
+                    );
+                    cin >> studentChoice;
+                    if (studentChoice == 1)
+                    {
+                        cout << "enter the new first name\n";
+                        cin >> str;
+                        for (int i = 0; i < schoolsQuantity; ++i)
+                        {
+                            for (int j = 0; j < CLASSES; ++j)
+                            {
+                                for (int k = 0; k < quantitySTUDENTS; ++k)
+                                {
+                                    if (nationalNum == schools[i].classes[j].students[k].getNationalId())
+                                    {
+                                        schools[i].classes[j].students[k].setFirstName(str);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else if (studentChoice == 2)
+                    {
+                        cout << "enter the new last name\n";
+                        cin >> str;
+                        for (int i = 0; i < schoolsQuantity; ++i)
+                        {
+                            for (int j = 0; j < CLASSES; ++j)
+                            {
+                                for (int k = 0; k < quantitySTUDENTS; ++k)
+                                {
+                                    if (nationalNum == schools[i].classes[j].students[k].getNationalId())
+                                    {
+                                        schools[i].classes[j].students[k].setLastName(str);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else if (studentChoice == 3)
+                    {
+                        int day = 0;
+                        int month = 0;
+                        int year = 0;
+                        cout << "enter the year then the month then the day\n";
+                        cin >> year >> month >> day;
+                        for (int i = 0; i < schoolsQuantity; ++i)
+                        {
+                            for (int j = 0; j < CLASSES; ++j)
+                            {
+                                for (int k = 0; k < quantitySTUDENTS; ++k)
+                                {
+                                    if (nationalNum == schools[i].classes[j].students[k].getNationalId())
+                                    {
+                                        schools[i].classes[j].students[k].setBirthDay(day);
+                                        schools[i].classes[j].students[k].setBirthMonth(month);
+                                        schools[i].classes[j].students[k].setBirthYear(year);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        cout << "enter the new national id\n";
+                        cin >> newNationalID;
+                        for (int i = 0; i < schoolsQuantity; ++i)
+                        {
+                            for (int j = 0; j < CLASSES; ++j)
+                            {
+                                if (nationalNum == schools[i].classes[j].teacher.getNationalId())
+                                {
+                                    schools[i].classes[j].teacher.setNationalId(newNationalID);
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    int newNationalID = 0;
+                    cout << "enter the national number of the teacher\n";
+                    cin >> nationalNum;
+                    printf("what do you want to change about this teacher\n"
+                           "1:first name\n"
+                           "2:last name\n"
+                           "3:birth date\n"
+                           "4:national id\n"
+                    );
+                    cin >> studentChoice;
+                    if (studentChoice == 1)
+                    {
+                        cout << "enter the new first name\n";
+                        cin >> str;
+                        for (int i = 0; i < schoolsQuantity; ++i)
+                        {
+                            for (int j = 0; j < CLASSES; ++j)
+                            {
+                                if (nationalNum == schools[i].classes[j].teacher.getNationalId())
+                                {
+                                    schools[i].classes[j].teacher.setFirstName(str);
+                                }
+                            }
+                        }
+                    }
+                    else if (studentChoice == 2)
+                    {
+                        cout << "enter the new last name\n";
+                        cin >> str;
+                        for (int i = 0; i < schoolsQuantity; ++i)
+                        {
+                            for (int j = 0; j < CLASSES; ++j)
+                            {
+                                if (nationalNum == schools[i].classes[j].teacher.getNationalId())
+                                {
+                                    schools[i].classes[j].teacher.setLastName(str);
+                                }
+                            }
+                        }
+                    }
+                    else if (studentChoice == 3)
+                    {
+                        int day = 0;
+                        int month = 0;
+                        int year = 0;
+                        cout << "enter the year then the month then the day\n";
+                        cin >> year >> month >> day;
+                        for (int i = 0; i < schoolsQuantity; ++i)
+                        {
+                            for (int j = 0; j < CLASSES; ++j)
+                            {
+                                if (nationalNum == schools[i].classes[j].teacher.getNationalId())
+                                {
+                                    schools[i].classes[j].teacher.setBirthDay(day);
+                                    schools[i].classes[j].teacher.setBirthMonth(month);
+                                    schools[i].classes[j].teacher.setBirthYear(year);
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        cout << "enter the new national id\n";
+                        cin >> newNationalID;
+                        for (int i = 0; i < schoolsQuantity; ++i)
+                        {
+                            for (int j = 0; j < CLASSES; ++j)
+                            {
+                                if (nationalNum == schools[i].classes[j].teacher.getNationalId())
+                                {
+                                    schools[i].classes[j].teacher.setNationalId(newNationalID);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                printf("what do you want to change about this school?\n"
+                       "1:name\n"
+                       "2:id\n"
+                       );
+                cin >> schoolChoice;
+                if (schoolChoice == 1)
+                {
+                    cout << "enter the new name for this school\n";
+                    cin >> str;
+                    for (int i = 0; i < schoolsQuantity; ++i)
+                    {
+                        if (id == schools[i].getIdNumber())
+                        {
+                            schools[i].setName(str);
+                        }
+                    }
+                }
+                else
+                {
+                    cout << "enter the new id for this school\n";
+                    cin >> newid;
+                    for (int i = 0; i < schoolsQuantity; ++i)
+                    {
+                        if (id == schools[i].getIdNumber())
+                        {
+                            schools[i].setIdNumber(newid);
                         }
                     }
                 }
