@@ -366,18 +366,19 @@ int main()
         }
         else if (choice == 6)
         {
-            int id = 0;
-            cout << "enter the national id of the student\n";
-            cin >> id;
+            int code = 0;
+            string name;
+            string lastName;
+            printf("ebteda name va sepas lastName danesh amooz ra vared konid\n");
+            cin >> name >> lastName;
             for (int i = 0; i < schoolsQuantity; ++i)
             {
                 for (int j = 0; j < CLASSES; ++j)
                 {
                     for (int k = 0; k < quantitySTUDENTS; ++k)
                     {
-                        if (schools[i].classes[j].students[k].getNationalId() == id)
-                        {
-                            cout << schools[i].getName() << endl;
+                        if (schools[i].classes[j].students[k].getFirstName() == name && schools[i].classes[j].students[k].getLastName() == lastName){
+                            cout << schools[i].getName()<< endl;
                             cout << schools[i].classes[j].teacher.getFirstName() << " " << schools[i].classes[j].teacher.getLastName() << endl;
                         }
                     }
