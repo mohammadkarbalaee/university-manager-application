@@ -23,21 +23,21 @@ void chaharomi(int tedad_madares, madreseh *madares);
 void shishomi(int tedad_madares,madreseh *madares);
 void haftomi(int tedad_madares, madreseh *madares);
 void nohomi(int tedad_madares,madreseh *madares);
-void thaghir_esm_kelas(int tedad_madares,madreseh *madares, const string &reshteh, int code_kelas);
+void thaghir_esm_kelas(int tedad_madares,madreseh *madares, string reshteh, int code_kelas);
 void thaghir_code_kelas(int tedad_madares,madreseh *madares, int code_kelas, int code_jadid_kelas);
-void thaghir_esm_daneshamooz(int tedad_madares, madreseh *madares, int code_melli, const string &reshteh);
-void thaghir_famili_daneshamooz(int tedad_madares,madreseh *madares, int code_melli, const string &reshteh);
+void thaghir_esm_daneshamooz(int tedad_madares, madreseh *madares, int code_melli,  string reshteh);
+void thaghir_famili_daneshamooz(int tedad_madares,madreseh *madares, int code_melli, string reshteh);
 void thaghir_tarikh_tavallod_daneshamooz(int tedad_madares,madreseh *madares, int code_melli);
 void thaghir_code_melli_daneshamooz(int tedad_madares,madreseh *madares, int code_melli, int code_melli_jadid);
-void thaghir_daneshamooz(int tedad_madares,madreseh *madares, int code_melli, const string &reshteh,int entekhab_daneshamooz);
-void thaghir_esm_moalem(int tedad_madares,madreseh *madares, int code_melli, const string &reshteh);
-void thaghir_famili_moalem(int tedad_madares,madreseh *madares, int code_melli, const string &reshteh);
+void thaghir_daneshamooz(int tedad_madares,madreseh *madares, int code_melli, string reshteh,int entekhab_daneshamooz);
+void thaghir_esm_moalem(int tedad_madares,madreseh *madares, int code_melli, string reshteh);
+void thaghir_famili_moalem(int tedad_madares,madreseh *madares, int code_melli, string reshteh);
 void thaghir_tarikh_tavallod_moalem(int tedad_madares,madreseh *madares, int code_melli);
 void thaghir_code_melli_moalem(int tedad_madares,madreseh *madares, int code_melli, int code_melli_jadid);
-void thaghir_moalem(int tedad_madares,madreseh *madares, int code_melli, const string &reshteh,int entekhab_daneshamooz);
-void thaghir_esm_madreseh(int tedad_madares, madreseh *madares, int code, const string &reshteh);
+void thaghir_moalem(int tedad_madares,madreseh *madares, int code_melli, string reshteh,int entekhab_daneshamooz);
+void thaghir_esm_madreseh(int tedad_madares, madreseh *madares, int code, string reshteh);
 void thaghir_code_madreseh(int tedad_madares, madreseh *madares, int code, int code_jadid);
-void thaghir_madreseh(int tedad_madares, madreseh *madares, int code, int entekhan_madreseh, const string &reshteh,int code_jadid);
+void thaghir_madreseh(int tedad_madares, madreseh *madares, int code, int entekhan_madreseh, string reshteh,int code_jadid);
 void dahomi(int tedad_madares,madreseh *madares);
 void hashtomi(int tedad_madares, madreseh *madares);
 int andaze(int adad);
@@ -49,7 +49,7 @@ kelas sabt_etelaat_kelas();
 
 int main(){
     int tedad_madares = 0;
-    printf("chand ta madreseh ro mikhai vared koni?n");
+    printf("chand ta madreseh ro mikhai vared konid?\n");
     scanf("%d",&tedad_madares);
     madreseh madares[tedad_madares];
     int code_hame_marares[tedad_madares];
@@ -118,7 +118,7 @@ void dahomi(int tedad_madares,madreseh *madares) {
         thaghir_madreseh(tedad_madares, madares, code, entekhan_madreseh, reshteh, code_jadid);
     }
 }
-void thaghir_madreseh(int tedad_madares, madreseh *madares, int code, int entekhan_madreseh, const string &reshteh,int code_jadid) {
+void thaghir_madreseh(int tedad_madares, madreseh *madares, int code, int entekhan_madreseh, string reshteh,int code_jadid) {
     printf("che chiz ra mikhahid taghir dahid?\n"
            "1:esm\n"
            "2:code madreseh\n"
@@ -141,7 +141,7 @@ void thaghir_code_madreseh(int tedad_madares,madreseh *madares, int code, int co
         }
     }
 }
-void thaghir_esm_madreseh(int tedad_madares,  madreseh *madares, int code, const string &reshteh) {
+void thaghir_esm_madreseh(int tedad_madares,  madreseh *madares, int code, string reshteh) {
     cout << "esm jadid madreseh ra vared konid\n";
     cin >> reshteh;
     for (int i = 0; i < tedad_madares; ++i){
@@ -150,8 +150,8 @@ void thaghir_esm_madreseh(int tedad_madares,  madreseh *madares, int code, const
         }
     }
 }
-void thaghir_moalem(int tedad_madares,  madreseh *madares, int code_melli, const string &reshteh,int entekhab_daneshamooz) {
-    int code_melli_jadid;
+void thaghir_moalem(int tedad_madares,  madreseh *madares, int code_melli, string reshteh,int entekhab_daneshamooz) {
+    int code_melli_jadid = 0;
     cout << "code melli moalem ra vared konid\n";
     cin >> code_melli;
     printf("che chiz ra mikhahid taghir dahid?\n"
@@ -204,7 +204,7 @@ void thaghir_tarikh_tavallod_moalem(int tedad_madares,  madreseh *madares, int c
         }
     }
 }
-void thaghir_famili_moalem(int tedad_madares,madreseh *madares, int code_melli, const string &reshteh) {
+void thaghir_famili_moalem(int tedad_madares,madreseh *madares, int code_melli,string reshteh) {
     cout << "famili jadid ra vared konid\n";
     cin >> reshteh;
     for (int i = 0; i < tedad_madares; ++i){
@@ -215,7 +215,7 @@ void thaghir_famili_moalem(int tedad_madares,madreseh *madares, int code_melli, 
         }
     }
 }
-void thaghir_esm_moalem(int tedad_madares,madreseh *madares, int code_melli, const string &reshteh) {
+void thaghir_esm_moalem(int tedad_madares,madreseh *madares, int code_melli, string reshteh) {
     cout << "esm jadid ra vared konid\n";
     cin >> reshteh;
     for (int i = 0; i < tedad_madares; ++i){
@@ -226,7 +226,7 @@ void thaghir_esm_moalem(int tedad_madares,madreseh *madares, int code_melli, con
         }
     }
 }
-void thaghir_daneshamooz(int tedad_madares,madreseh *madares, int code_melli, const string &reshteh,int entekhab_daneshamooz) {
+void thaghir_daneshamooz(int tedad_madares,madreseh *madares, int code_melli, string reshteh,int entekhab_daneshamooz) {
     int code_melli_jadid = 0;
     cout << "code melli danesh amooz ra vared konid\n";
     cin >> code_melli;
@@ -279,7 +279,7 @@ void thaghir_tarikh_tavallod_daneshamooz(int tedad_madares,madreseh *madares, in
         }
     }
 }
-void thaghir_famili_daneshamooz(int tedad_madares,madreseh *madares, int code_melli, const string &reshteh) {
+void thaghir_famili_daneshamooz(int tedad_madares,madreseh *madares, int code_melli, string reshteh) {
     cout << "famili jadid ra vared konid\n";
     cin >> reshteh;
     for (int i = 0; i < tedad_madares; ++i){
@@ -292,7 +292,7 @@ void thaghir_famili_daneshamooz(int tedad_madares,madreseh *madares, int code_me
         }
     }
 }
-void thaghir_esm_daneshamooz(int tedad_madares,madreseh *madares, int code_melli, const string &reshteh) {
+void thaghir_esm_daneshamooz(int tedad_madares,madreseh *madares, int code_melli, string reshteh) {
     cout << "esm jadid ra vared konid\n";
     cin >> reshteh;
     for (int i = 0; i < tedad_madares; ++i){
@@ -316,7 +316,7 @@ void thaghir_code_kelas(int tedad_madares,madreseh *madares, int code_kelas, int
         }
     }
 }
-void thaghir_esm_kelas(int tedad_madares,madreseh *madares, const string &reshteh, int code_kelas) {
+void thaghir_esm_kelas(int tedad_madares,madreseh *madares, string reshteh, int code_kelas) {
     cout << "esm jadid kelas ra vared konid\n";
     cin >> reshteh;
     for (int i = 0; i < tedad_madares; ++i){
@@ -443,18 +443,18 @@ void yek(int tedad_madares,madreseh *madares) {
     }
 }
 void nemayesh_menu_asli() {
-    cout << "che kari mikhai anjam bedi?%n";
-    cout << "1:dadan etelaat madreseh%n";
-    cout << "2:neshan dadan etelaat%n";
-    cout << "3:neshan dadan etelaat madreseh bar asas code vorodi%n";
-    cout << "4:serch moalem_kelas%n";
-    cout << "5:hazf%n";
-    cout << "6:serch daneshamoozha%n";
-    cout << "7:neshan dadan moaleman yek madreseh%n";
-    cout << "8:neshan dadan code melli va esm danesh amooz ha%n";
-    cout << "9:serch bar asas tarikh tavallod%n";
-    cout << "10:taghir dade ha %n";
-    cout << "11:khoroj%n";
+    cout << "che kari mikhai anjam bedi?\n";
+    cout << "1:dadan etelaat madreseh\n";
+    cout << "2:neshan dadan etelaat\n";
+    cout << "3:neshan dadan etelaat madreseh bar asas code vorodi\n";
+    cout << "4:serch moalem_kelas\n";
+    cout << "5:hazf\n";
+    cout << "6:serch daneshamoozha\n";
+    cout << "7:neshan dadan moaleman yek madreseh\n";
+    cout << "8:neshan dadan code melli va esm danesh amooz ha\n";
+    cout << "9:serch bar asas tarikh tavallod\n";
+    cout << "10:taghir dade ha \n";
+    cout << "11:khoroj\n";
 }
 void moratab_sazi(int tedad_madares, int *code_hame_marares) {
     int shakhes;
@@ -468,25 +468,25 @@ void moratab_sazi(int tedad_madares, int *code_hame_marares) {
     }
 }
 void neshan_dadan_etelaat_class(kelas kelas){
-    printf("esm kelas: %s%n",kelas.getEsm().c_str());
-    printf("code_kelas: %d%n",kelas.getCodeKelas());
-    printf("esm moalem_kelas : %s %s%n",kelas.moalem_kelas.getEsm().c_str(),kelas.moalem_kelas.getFamili().c_str());
-    printf("code melli moalem_kelas : %d%n",kelas.moalem_kelas.getCodeMelli());
-    printf("tarikh tavallod moalem_kelas's : %d/%d/%d%n",kelas.moalem_kelas.getSalTavallod(),kelas.moalem_kelas.getMahTavallod(),kelas.moalem_kelas.getRoozTavallod());
+    printf("esm kelas: %s\n",kelas.getEsm().c_str());
+    printf("code_kelas: %d\n",kelas.getCodeKelas());
+    printf("esm moalem_kelas : %s %s\n",kelas.moalem_kelas.getEsm().c_str(),kelas.moalem_kelas.getFamili().c_str());
+    printf("code melli moalem_kelas : %d\n",kelas.moalem_kelas.getCodeMelli());
+    printf("tarikh tavallod moalem_kelas's : %d/%d/%d\n",kelas.moalem_kelas.getSalTavallod(),kelas.moalem_kelas.getMahTavallod(),kelas.moalem_kelas.getRoozTavallod());
     for (int i = 0; i < tedad_daneshamooz; ++i){
-        printf("student: %d%n",i + 1);
-        printf("esm danesh amooz: %s %s%n",kelas.daneshamoozha[i].getEsm().c_str(),kelas.daneshamoozha[i].getFamili().c_str());
-        printf("code melli danesh amooz: %d%n",kelas.daneshamoozha[i].getCodeMelli());
-        printf("tarikh tavallod danesh amooz: %d/%d/%d%n",kelas.daneshamoozha[i].getSalTavallod(),kelas.daneshamoozha[i].getMahTavallod(),kelas.daneshamoozha[i].getRoozTavallod());
+        printf("student: %d\n",i + 1);
+        printf("esm danesh amooz: %s %s\n",kelas.daneshamoozha[i].getEsm().c_str(),kelas.daneshamoozha[i].getFamili().c_str());
+        printf("code melli danesh amooz: %d\n",kelas.daneshamoozha[i].getCodeMelli());
+        printf("tarikh tavallod danesh amooz: %d/%d/%d\n",kelas.daneshamoozha[i].getSalTavallod(),kelas.daneshamoozha[i].getMahTavallod(),kelas.daneshamoozha[i].getRoozTavallod());
     }
 }
 void neshan_dadan_hame_etelaat(madreseh inn_madreseh){
-    printf("************************%n");
-    printf("esm madreseh: %s%n",inn_madreseh.getEsm().c_str());
+    printf("************************\n");
+    printf("esm madreseh: %s\n",inn_madreseh.getEsm().c_str());
 
     cout << "code madresh: " << inn_madreseh.getCodeMadreseh() << endl;
     for (int i = 0; i < tedad_class; ++i){
-        printf("class number %d%n",i + 1);
+        printf("class number %d\n",i + 1);
         neshan_dadan_etelaat_class(inn_madreseh.kelasha[i]);
     }
 }
