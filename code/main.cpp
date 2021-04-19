@@ -7,8 +7,8 @@
 #include "madreseh.h"
 using namespace std;
 
-const int tedad_daneshamooz = 1;
-const int tedad_class = 1;
+const int tedad_daneshamooz = 30;
+const int tedad_class = 10;
 
 madreseh gereftan_etelaat_madreseh();
 void neshan_dadan_etelaat_class(kelas kelas);
@@ -40,12 +40,12 @@ void thaghir_code_madreseh(int tedad_madares, madreseh *madares, int code, int c
 void thaghir_madreseh(int tedad_madares, madreseh *madares, int code, int entekhan_madreseh, string reshteh,int code_jadid);
 void dahomi(int tedad_madares,madreseh *madares);
 void hashtomi(int tedad_madares, madreseh *madares);
-int  andaze(int adad);
+int andaze(int adad);
 bool dorosti_code_melli(int code_melli);
 bool dorosti_esm(string esm, string famili);
 danesh_amooz sabt_etelaat_danesh_amooz();
 moalem sabt_etelaat_moalem();
-kelas  sabt_etelaat_kelas();
+kelas sabt_etelaat_kelas();
 
 int main(){
     int tedad_madares = 0;
@@ -70,7 +70,7 @@ int main(){
             case 9: nohomi(tedad_madares, madares); break;
             case 10: dahomi(tedad_madares, madares); break;
             default:
-                printf("movffagh bashid,khoda negajdar shoma\n");
+                printf("movffagh bashid,khoda negajdar shoma%n");
                 break;
         }
     }
@@ -606,8 +606,8 @@ kelas sabt_etelaat_kelas(){
     cin >> tempnum;
     kelass.setCodeKelas(tempnum);
     danesh_amooz students;
-    moalem moalemm = sabt_etelaat_moalem();
-    kelass.moalem_kelas = moalemm;
+    moalem moalem_kelas = sabt_etelaat_moalem();
+    kelass.moalem_kelas = moalem_kelas;
     for (int i = 0; i < tedad_daneshamooz; ++i){
         cout << "danesh amooz shomare " << i + 1 << endl;
         students = sabt_etelaat_danesh_amooz();
