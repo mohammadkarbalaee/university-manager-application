@@ -2,8 +2,8 @@
 #include "string"
 using namespace std;
 
-const int CLASSES = 10;
-const int quantitySTUDENTS = 30;
+const int CLASSES = 1;
+const int quantitySTUDENTS = 1;
 
 class Teacher
 {
