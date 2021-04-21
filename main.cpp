@@ -584,8 +584,8 @@ moalem sabt_etelaat_moalem()
         return moalemKhali;
     }
     amoozgar.setCodeMelli(tempnum);
-    cin >> tempnum;
     cout << "rooz tavallod moalem ra vared konid" << endl;
+    cin >> tempnum;
     amoozgar.setRoozTavallod(tempnum);
     cout << "mah tavallod moalem ra vared konid" << endl;
     cin >> tempnum;
